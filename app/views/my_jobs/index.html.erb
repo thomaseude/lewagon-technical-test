@@ -23,6 +23,15 @@
             <div class="card-body">
               <%= job.description %>
             </div>
+            <% unless job.draft? %>
+              <div class="card-footer">
+                <% if job.open? %>
+                  <small>Opened on <%= job.opened_at.strftime("%A, %b %d") %></small>
+                <% elsif job.closed? %>
+                  <small>Closed on <%= job.closed_at.strftime("%A, %b %d") %></small>
+                <% end %>
+              </div>
+            <% end %>
           </div>
       <% end %>
     </div>

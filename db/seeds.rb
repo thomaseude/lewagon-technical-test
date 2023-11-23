@@ -12,11 +12,43 @@ other_user = User.create!(email: "miles@cyberdyne.com", password: "secret", comp
 
 # Create jobs
 puts "Creating jobs for our test user..."
-test_user.jobs.create!(title: "Associate Product Manager", description: "We are looking for an associate Product Manager to work alongise our VP of Engineering", status: "closed")
-test_user.jobs.create!(title: "Software Engineer", description: "We are looking for a software engineer to join our team", status: "open")
-test_user.jobs.create!(title: "Event Manager", description: "Our Paris campus is looking for a talented Event Manager", status: "open")
+test_user.jobs.create!(
+  title: "Associate Product Manager",
+  description: "We are looking for an associate Product Manager to work alongise our VP of Engineering",
+  status: "closed",
+  opened_at: 1.month.ago,
+  closed_at: 1.week.ago
+)
+test_user.jobs.create!(
+  title: "Software Engineer",
+  description: "We are looking for a software engineer to join our team",
+  status: "open",
+  opened_at: 1.week.ago
+)
+test_user.jobs.create!(
+  title: "Event Manager",
+  description: "Our Paris campus is looking for a talented Event Manager",
+  status: "open",
+  opened_at: 1.day.ago
+)
 
 puts "Creating jobs for the other user..."
-other_user.jobs.create!(title: "Robotics Expert", description: "You wanted to build a humanoïd robot since you were a kid. Come work with us.", status: "closed")
-other_user.jobs.create!(title: "Autonomous System Engineer", description: "Our fleet of robots is looking for an Engineering helping them to become more autonomous", status: "open")
-other_user.jobs.create!(title: "AI Robotics Scientist", description: "Our robot team is looking for an AI Robotics Scientist for a special project 'Skynet'", status: "open")
+other_user.jobs.create!(
+  title: "Robotics Expert",
+  description: "You wanted to build a humanoïd robot since you were a kid. Come work with us.",
+  status: "closed",
+  opened_at: 1.month.ago + 1.day,
+  closed_at: 1.week.ago + 1.day
+)
+other_user.jobs.create!(
+  title: "Autonomous System Engineer",
+  description: "Our fleet of robots is looking for an Engineering helping them to become more autonomous",
+  status: "open",
+  opened_at: 5.days.ago
+)
+other_user.jobs.create!(
+  title: "AI Robotics Scientist",
+  description: "Our robot team is looking for an AI Robotics Scientist for a special project 'Skynet'",
+  status: "open",
+  opened_at: 2.day.ago
+)
