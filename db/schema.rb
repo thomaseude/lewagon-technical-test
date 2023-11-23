@@ -17,7 +17,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_23_105516) do
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "status"
+    t.integer "status", default: 0, null: false
+    t.datetime "opened_at"
+    t.datetime "closed_at"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

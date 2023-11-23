@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row mt-4 justify-content-center">
+    <div class="col-6">
+      <div class="row">
+        <div class="col">
+          <div class="my-4">
+            <h1 class="h2 mt-4 mb-2"><strong>My Jobs</strong></h1>
+            <p>Company: <strong class="fs-5"><%= current_user.company %></strong></p>
+          </div>
+        </div>
+        <div class="col">
+          <%= link_to 'Add job position', new_my_job_path, class: 'btn btn-primary float-end mt-4' %>
+        </div>
+      </div>
+      <% @jobs.each do |job| %>
+          <div class="card my-3">
+            <div class="card-header d-flex align-items-center justify-content-between">
+              <strong><%= job.title %></strong>
+              <span class="badge bg-<%= job.status == 'open' ? 'success' : job.status == 'closed' ? 'dark' : 'light' %>">
+                <%= job.status %>
+              </span>
+            </div>
+            <div class="card-body">
+              <%= job.description %>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
