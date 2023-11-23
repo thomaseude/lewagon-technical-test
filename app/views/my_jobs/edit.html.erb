@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row mt-4 justify-content-center">
     <div class="col col-md-4">
-      <h1 class="h2 my-4 text-center"><strong>Open new job position</strong></h1>
-      <%= form_with(model: @job, url: my_jobs_path, class: "form") do |form| %>
+      <h1 class="h2 my-4 text-center"><strong>Update job position</strong></h1>
+      <%= form_with(model: @job, url: my_job_path, class: "form") do |form| %>
         <div class="mb-3">
           <%= form.label :title, class: "form-label" %>
           <%= form.text_field :title, class: "form-control", placeholder: "Assistant to the regional manager" %>
@@ -23,7 +23,7 @@
         </div>
         <div class="mb-3">
           <%= form.label :status, class: "form-label" %>
-          <%= form.select :status, options_for_select(Job.statuses.keys), {}, class: "form-select" %>
+          <%= form.select :status, Job.statuses.keys, {}, class: "form-select" %>
           <% if @job.errors.has_key?(:status) %>
             <div class="invalid-feedback">
               <%= @job.errors[:status].first %>

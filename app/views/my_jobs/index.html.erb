@@ -23,15 +23,21 @@
             <div class="card-body">
               <%= job.description %>
             </div>
-            <% unless job.draft? %>
-              <div class="card-footer">
-                <% if job.open? %>
-                  <small>Opened on <%= job.opened_at.strftime("%A, %b %d") %></small>
-                <% elsif job.closed? %>
-                  <small>Closed on <%= job.closed_at.strftime("%A, %b %d") %></small>
-                <% end %>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <% if job.open? %>
+                <small>Opened on <%= job.opened_at.strftime("%A, %b %d") %></small>
+              <% else %>
+                <small>Closed on <%= job.closed_at.strftime("%A, %b %d") %></small>
+              <% end %>
+              <div class="dropdown">
+                <button class="btn btn-light" type="button" id="<%= dom_id(job) %>" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-three-dots"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="<%= dom_id(job) %>">
+                  <li><%= link_to 'Edit', edit_my_job_path(job), class: "dropdown-item" %></li>
+                </ul>
               </div>
-            <% end %>
+            </div>
           </div>
       <% end %>
     </div>
