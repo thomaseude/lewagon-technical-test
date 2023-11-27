@@ -16,7 +16,7 @@
           <div class="card my-3">
             <div class="card-header d-flex align-items-center justify-content-between">
               <strong><%= job.title %></strong>
-              <span class="badge bg-<%= job.status == 'open' ? 'success' : job.status == 'closed' ? 'dark' : 'light' %>">
+              <span class="badge bg-<%= job.status == 'open' ? 'success' : job.status == 'closed' ? 'dark' : 'info' %>">
                 <%= job.status %>
               </span>
             </div>
