@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row mt-4 justify-content-center">
+    <div class="col-6">
+      <div class="row">
+        <div class="col">
+          <div class="my-4">
+            <h1 class="h2 mt-4 mb-2"><strong>My Jobs</strong></h1>
+            <p>Company: <strong class="fs-5"><%= current_user.company %></strong></p>
+          </div>
+        </div>
+        <div class="col">
+          <%= link_to 'Add job position', new_my_job_path, class: 'btn btn-primary float-end mt-4' %>
+        </div>
+      </div>
+      <% @jobs.each do |job| %>
+          <div class="card my-3">
+            <div class="card-header d-flex align-items-center justify-content-between">
+              <strong><%= job.title %></strong>
+              <span class="badge bg-<%= job.status == 'open' ? 'success' : job.status == 'closed' ? 'dark' : 'light' %>">
+                <%= job.status %>
+              </span>
+            </div>
+            <div class="card-body">
+              <%= job.description %>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <% if job.open? %>
+                <small>Opened on <%= job.opened_at.strftime("%A, %b %d") %></small>
+              <% else %>
+                <small>Closed on <%= job.closed_at.strftime("%A, %b %d") %></small>
+              <% end %>
+              <div class="dropdown">
+                <button class="btn btn-light" type="button" id="<%= dom_id(job) %>" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-three-dots"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="<%= dom_id(job) %>">
+                  <li><%= link_to 'Edit', edit_my_job_path(job), class: "dropdown-item" %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,54 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+return unless Rails.env.development?
+
+# Clean database
+puts "Cleaning database..."
+Job.destroy_all
+User.destroy_all
+
+# Create users
+puts "Creating users..."
+test_user = User.create!(email: "test@lewagon.com", password: "secret", company: "Le Wagon", first_name: "John", last_name: "Doe")
+other_user = User.create!(email: "miles@cyberdyne.com", password: "secret", company: "Cyberdyne Systems", first_name: "Miles", last_name: "Dyson")
+
+# Create jobs
+puts "Creating jobs for our test user..."
+test_user.jobs.create!(
+  title: "Associate Product Manager",
+  description: "We are looking for an associate Product Manager to work alongise our VP of Engineering",
+  status: "closed",
+  opened_at: 1.month.ago,
+  closed_at: 1.week.ago
+)
+test_user.jobs.create!(
+  title: "Software Engineer",
+  description: "We are looking for a software engineer to join our team",
+  status: "open",
+  opened_at: 1.week.ago
+)
+test_user.jobs.create!(
+  title: "Event Manager",
+  description: "Our Paris campus is looking for a talented Event Manager",
+  status: "open",
+  opened_at: 1.day.ago
+)
+
+puts "Creating jobs for the other user..."
+other_user.jobs.create!(
+  title: "Robotics Expert",
+  description: "You wanted to build a humanoïd robot since you were a kid. Come work with us.",
+  status: "closed",
+  opened_at: 1.month.ago + 1.day,
+  closed_at: 1.week.ago + 1.day
+)
+other_user.jobs.create!(
+  title: "Autonomous System Engineer",
+  description: "Our fleet of robots is looking for an Engineering helping them to become more autonomous",
+  status: "open",
+  opened_at: 5.days.ago
+)
+other_user.jobs.create!(
+  title: "AI Robotics Scientist",
+  description: "Our robot team is looking for an AI Robotics Scientist for a special project 'Skynet'",
+  status: "open",
+  opened_at: 2.day.ago
+)
