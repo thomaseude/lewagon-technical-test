@@ -34,7 +34,9 @@
                   <i class="bi bi-three-dots"></i>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="<%= dom_id(job) %>">
-                  <li><%= link_to 'Edit', edit_my_job_path(job), class: "dropdown-item" %></li>
+                  <% if job.user == current_user %>
+                    <li><%= link_to 'Edit', edit_my_job_path(job), class: "dropdown-item" %></li>
+                  <% end %>
                 </ul>
               </div>
             </div>
