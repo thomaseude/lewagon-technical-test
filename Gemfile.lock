@@ -125,6 +125,7 @@ GEM
     execjs (2.9.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-protobuf (3.25.1-arm64-darwin)
     google-protobuf (3.25.1-x86_64-darwin)
     google-protobuf (3.25.1-x86_64-linux)
     i18n (1.14.1)
@@ -164,6 +165,8 @@ GEM
     net-smtp (0.4.0)
       net-protocol
     nio4r (2.6.1)
+    nokogiri (1.15.5-arm64-darwin)
+      racc (~> 1.4)
     nokogiri (1.15.5-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.15.5-x86_64-linux)
@@ -230,6 +233,8 @@ GEM
     rexml (3.2.6)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
+    sass-embedded (1.66.1-arm64-darwin)
+      google-protobuf (~> 3.23)
     sass-embedded (1.66.1-x86_64-darwin)
       google-protobuf (~> 3.23)
     sass-embedded (1.66.1-x86_64-linux-gnu)
@@ -277,6 +282,7 @@ GEM
     zeitwerk (2.6.12)
 
 PLATFORMS
+  arm64-darwin-23
   x86_64-darwin-21
   x86_64-linux
 
