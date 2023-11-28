@@ -4,18 +4,14 @@
       <div class="row">
         <div class="col">
           <div class="my-4">
-            <h1 class="h2 mt-4 mb-2"><strong>My Jobs</strong></h1>
-            <p>Company: <strong class="fs-5"><%= current_user.company %></strong></p>
+            <h1 class="h2 mt-4 mb-2"><strong>Jobs</strong></h1>
           </div>
-        </div>
-        <div class="col">
-          <%= link_to 'Add job position', new_my_job_path, class: 'btn btn-primary float-end mt-4' %>
         </div>
       </div>
       <% @jobs.each do |job| %>
           <div class="card my-3">
             <div class="card-header d-flex align-items-center justify-content-between">
-              <strong><%= job.title %></strong>
+              <strong><%= job.title %> at <%= job.user.company %></strong>
               <span class="badge bg-<%= job.status == 'open' ? 'success' : job.status == 'closed' ? 'dark' : 'info' %>">
                 <%= job.status %>
               </span>
@@ -31,16 +27,7 @@
                   <small>Closed on <%= job.closed_at&.strftime("%A, %b %d") %></small>
                 <% end %>
               <% end %>
-              <div class="dropdown">
-                <button class="btn btn-light" type="button" id="<%= dom_id(job) %>" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="bi bi-three-dots"></i>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="<%= dom_id(job) %>">
-                  <% if job.user == current_user %>
-                    <li><%= link_to 'Edit', edit_my_job_path(job), class: "dropdown-item" %></li>
-                  <% end %>
-                </ul>
-              </div>
+              <%= link_to "Apply", new_job_apply_path(job), class: "btn btn-primary" %>
             </div>
           </div>
       <% end %>
