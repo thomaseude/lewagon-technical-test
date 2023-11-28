@@ -11,10 +11,7 @@
       <% @jobs.each do |job| %>
           <div class="card my-3">
             <div class="card-header d-flex align-items-center justify-content-between">
-              <strong><%= job.title %> at <%= job.user.company %></strong>
-              <span class="badge bg-<%= job.status == 'open' ? 'success' : job.status == 'closed' ? 'dark' : 'info' %>">
-                <%= job.status %>
-              </span>
+              <p class="mb-0"><strong><%= job.title %></strong> at <%= job.user.company %></p>
             </div>
             <div class="card-body">
               <%= job.description %>
